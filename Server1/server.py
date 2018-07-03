@@ -17,26 +17,32 @@ class UserServiceServicer(user_pb2_grpc.UserServiceServicer):
     # the request and response are of the data type
     # user_pb2.Number
     def GetUser(self, request, context):
-	print('inside getUser')
+        create_log('inside getUser')
         response = user_pb2.Response()
         response.success = True
         response.users = user.get_user(request)
         return response
     
     def CreateUser(self, request, context):
-        print('inside createuser')
-	response = user_pb2.Response()
+        create_log('inside createuser')
+        response = user_pb2.Response()
         response.success = True
         response.users = user.create_user(request)
         return response
     
     def GetUserArticle(self, request, context):
-	print('inside get user article')
+        create_log('inside get user article')
         response = user_pb2.Response()
         response.success = True
-        print request.user_id
+        create_log(request.user_id)
         response.users = user.get_article(request.user_id)
         return response
+
+
+def create_log(comment):
+    f = open("log","a")
+    f.write(str(comment) + "\n")
+    f.close()
     
 
 # create a gRPC server

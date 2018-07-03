@@ -17,11 +17,15 @@ class ArticleServicer(article_pb2_grpc.ArticleServicer):
     # the request and response are of the data type
     # user_pb2.Number
     def GetArticle(self, request, context):
+        create_log('inside getRaticle')
         response = article_pb2.ArticlesResponse()
         response.article = article.get_article(request.id)
         return response
         
-
+def create_log(comment):
+    f = open("log","a")
+    f.write(str(comment) + "\n")
+    f.close()
 # create a gRPC server
 server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 
