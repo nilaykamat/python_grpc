@@ -17,18 +17,21 @@ class UserServiceServicer(user_pb2_grpc.UserServiceServicer):
     # the request and response are of the data type
     # user_pb2.Number
     def GetUser(self, request, context):
+	print('inside getUser')
         response = user_pb2.Response()
         response.success = True
         response.users = user.get_user(request)
         return response
     
     def CreateUser(self, request, context):
-        response = user_pb2.Response()
+        print('inside createuser')
+	response = user_pb2.Response()
         response.success = True
         response.users = user.create_user(request)
         return response
     
     def GetUserArticle(self, request, context):
+	print('inside get user article')
         response = user_pb2.Response()
         response.success = True
         print request.user_id

@@ -4,7 +4,7 @@ import grpc
 from protos import article_pb2
 from protos import article_pb2_grpc
 
-channel = grpc.insecure_channel('localhost:50052')
+channel = grpc.insecure_channel('35.226.146.110:50052')
 
 # create a stub (client)
 stub = article_pb2_grpc.ArticleStub(channel)
