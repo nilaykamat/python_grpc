@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+message User {
+    int32 id = 1;
+    string name = 2;
+    string email = 3;
+}
+
+message Response {
+	bool success = 1;
+	string users = 2;
+}
+
+message ArticleRequest {
+    int32 user_id = 1;
+}
+
+message ArticleResponse {
+    bool success = 1;
+    string article = 2;
+}
+message GetRequest {}
+
+service UserService {
+	rpc GetUser(GetRequest) returns (Response) {}
+    rpc CreateUser(User) returns(Response) {}
+    rpc GetUserArticle(ArticleRequest) returns(ArticleResponse) {}
+}
