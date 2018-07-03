@@ -28,6 +28,7 @@ def get_article(user_id):
     print 'inside article'
     
     # open a gRPC channel
+  #  channel = grpc.insecure_channel('server2:50052')
     channel = grpc.insecure_channel('localhost:50052')
 
     # create a stub (client)

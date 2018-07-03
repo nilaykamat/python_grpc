@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: server1
+  namespace: py-grpc
+  labels:
+    app: server1
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 50051
+    protocol: TCP
+    targetPort: 50051
+  selector:
+    app: server1
