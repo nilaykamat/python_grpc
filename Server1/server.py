@@ -13,9 +13,6 @@ import user
 # user_pb2_grpc.userServicer
 class UserServiceServicer(user_pb2_grpc.UserServiceServicer):
 
-    # user.square_root is exposed here
-    # the request and response are of the data type
-    # user_pb2.Number
     def GetUser(self, request, context):
         create_log('inside getUser')
         response = user_pb2.Response()

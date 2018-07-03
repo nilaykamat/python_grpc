@@ -1,1 +1,3 @@
 *.pyc
+./Server1/log
+./Server2/log
