@@ -5,8 +5,8 @@ from consignment_protos import consignment_pb2
 from consignment_protos import consignment_pb2_grpc
 
 # open a gRPC channel
-channel = grpc.insecure_channel('localhost:50051')
-# channel = grpc.insecure_channel('consignment:50051')
+#channel = grpc.insecure_channel('localhost:50051')
+channel = grpc.insecure_channel('consignment:50051')
 
 # create a stub (client)
 stub = consignment_pb2_grpc.ShippingStub(channel)
