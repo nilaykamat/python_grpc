@@ -23,4 +23,4 @@ def getVessel():
     return jsonify(json.loads(consignment_cli.get_vessel(int(payload['id']), payload['name'], int(payload['weight']))))
 
 if (__name__ == "__main__"):
-    app.run(threaded=True, debug=True) 
+    app.run(threaded=True, debug=True, host='0.0.0.0') 
