@@ -12,7 +12,7 @@ import vessel
 # create a class to define the server functions, derived from
 # vessel_pb2_grpc.VesselServicer
 class VesselServicer(vessel_pb2_grpc.VesselServicer):
-    
+    # service endpoint to get vessels
     def GetVessel(self, request, context):
         create_log('Getting Vessels')
         vesselResponse = vessel.get_vessel(request.weight)
@@ -22,7 +22,7 @@ class VesselServicer(vessel_pb2_grpc.VesselServicer):
         response.max_weight = vesselResponse['max_weight']
         return response
 
-
+# function to create access logs
 def create_log(comment):
     f = open("log","a")
     f.write(str(comment) + "\n")

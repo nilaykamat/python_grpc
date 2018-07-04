@@ -26,11 +26,13 @@ consignments = [
     }
 ]
 
+# will retrive consignmnet from the list of consignment based on id
 def get_consignment(consignment_id):
     for consignment in consignments:
         if consignment_id == consignment['id']:
             return consignment
 
+# will call vessel service with consignment weight to retrive approprite vessel
 def get_vessel_for_consignment(consignment):
     import grpc
 

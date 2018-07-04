@@ -21,6 +21,7 @@ vessels = [
     }
 ]
 
+# function will go through the list of vessels and will return the one with weight which can accomodate consignment
 def get_vessel(weight):
     for vessel in vessels:
         if weight <= vessel['max_weight']:
