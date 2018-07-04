@@ -41,8 +41,8 @@ def get_vessel_for_consignment(consignment):
     from vessel_protos import vessel_pb2_grpc
 
     # open a gRPC channel
-    channel = grpc.insecure_channel('localhost:50052')
-    # channel = grpc.insecure_channel('vessel:50052')
+    #channel = grpc.insecure_channel('localhost:50052')
+    channel = grpc.insecure_channel('vessel:50052')
 
     # create a stub (client)
     stub = vessel_pb2_grpc.VesselStub(channel)
