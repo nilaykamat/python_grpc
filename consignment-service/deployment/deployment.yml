@@ -1,17 +1,14 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: consignment
+  name: consignment-deployment
   namespace: shippy-grpc
 spec:
   replicas: 2
-  selector:
-    matchLabels:
-      app: consignment
   template:
     metadata:
       labels:
-        app: consignment
+        app: consignment-app
     spec:
         containers:
         - name: consignment

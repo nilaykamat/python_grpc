@@ -5,7 +5,7 @@ import consignment_cli
 app = Flask(__name__)
 
 # Rendering Template for UI
-@app.route("/")
+@app.route("/ui")
 def main():
      return render_template('/index.html')
 
