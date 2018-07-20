@@ -7,12 +7,12 @@ from consignment_protos import consignment_pb2_grpc
 
 ###--------
 
-with open('ca.crt') as f:
+with open('tls.crt') as f:
     trusted_certs = f.read().encode()
 # create credentials
 credentials = grpc.ssl_channel_credentials(root_certificates=trusted_certs)
 #channel = grpc.secure_channel('localhost:50051', credentials)
-channel = grpc.secure_channel('consignment:50051', credentials)
+channel = grpc.secure_channel('shippy.example.com:443', credentials)
 
 ###--------
 
@@ -39,3 +39,6 @@ def get_vessel(consignment_id, consignment_name, consignment_weight):
     vessel_response = stub.GetVesselForConsignment(vessel)
     # return response in JSON format rather than object
     return json_format.MessageToJson(vessel_response)
+
+#print get_vessel(1,'sample',200)
+#print get_consignment(1)
