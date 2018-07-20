@@ -1,0 +1,49 @@
+## client_service.yaml
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client
+  namespace: kube-system
+  labels:
+    app: client
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: client
+
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: client
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+        containers:
+        - name: vessel
+          image: gcr.io/gcptraining-17042017/python-grpc-microservice/client:ssl2
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 5000
+            name: client-port
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "64Mi"
+              cpu: "250m"

@@ -1,0 +1,14 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+ annotations:
+ name: client
+ namespace: kube-system
+spec:
+  minReplicas: 1
+  maxReplicas: 5
+  scaleTargetRef:
+    apiVersion: apps/v1beta2
+    kind: Deployment
+    name: client
+  targetCPUUtilizationPercentage: 50

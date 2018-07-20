@@ -1,0 +1,14 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+ annotations:
+ name: consignment
+ namespace: kube-system
+spec:
+  minReplicas: 2
+  maxReplicas: 5
+  scaleTargetRef:
+    apiVersion: apps/v1beta2
+    kind: Deployment
+    name: consignment
+  targetCPUUtilizationPercentage: 50

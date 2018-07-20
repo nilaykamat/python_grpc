@@ -1,0 +1,49 @@
+## vessel_servicec.yaml
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vessel
+  namespace: kube-system
+  labels:
+    app: vessel
+spec:
+  clusterIP: None
+  ports:
+  - port: 50052
+    protocol: TCP
+    targetPort: 50052
+  selector:
+    app: vessel
+
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: vessel
+  namespace: kube-system
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: vessel
+  template:
+    metadata:
+      labels:
+        app: vessel
+    spec:
+        containers:
+        - name: vessel
+          image: gcr.io/gcptraining-17042017/python-grpc-microservice/vessel:ssl2
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 50052
+            name: vessel-port
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "64Mi"
+              cpu: "250m"
