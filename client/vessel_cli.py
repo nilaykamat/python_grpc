@@ -19,7 +19,7 @@ channel = grpc.secure_channel('shippy.example.com:443', credentials)
 
 ###--------
 
-#channel = grpc.insecure_channel('35.237.1.120:80')
+#channel = grpc.insecure_channel('vessel:50052')
 
 # create a stub (client)
 stub = vessel_pb2_grpc.VesselStub(channel)

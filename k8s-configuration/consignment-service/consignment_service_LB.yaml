@@ -7,6 +7,8 @@ kind: Service
 metadata:
   name: consignment
   namespace: shippy-grpc
+  annotations:
+     service.alpha.kubernetes.io/app-protocols: '{"http2-service":"HTTP2"}'
   labels:
     app: consignment
 spec:
@@ -15,12 +17,14 @@ spec:
   - port: 50051
     protocol: TCP
     targetPort: 50051
+    name: http2-service
+  - port: 8080
+    protocol: TCP
+    targetPort: 9000
+    name: cons-health
   selector:
     app: consignment
-
 ---
-
-
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
@@ -38,10 +42,12 @@ spec:
     spec:
         containers:
         - name: consignment
-          image: gcr.io/gcptraining-17042017/python-grpc-microservice/consignment:glbc
+          image: gcr.io/gcptraining-17042017/python-grpc-microservice/consignment:glbc_2
           imagePullPolicy: Always
           ports:
           - containerPort: 50051
             name: cons-port
+          - containerPort: 9000
+            name: cheal-port
 
 

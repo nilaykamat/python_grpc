@@ -6,6 +6,8 @@ kind: Service
 metadata:
   name: vessel
   namespace: shippy-grpc
+  annotations:
+     service.alpha.kubernetes.io/app-protocols: '{"http2-service":"HTTP2"}'
   labels:
     app: vessel
 spec:
@@ -14,6 +16,11 @@ spec:
   - port: 50052
     protocol: TCP
     targetPort: 50052
+    name: http2-service
+  - port: 9000
+    protocol: TCP
+    targetPort: 9000
+    name: vess-heal
   selector:
     app: vessel
 
@@ -35,8 +42,10 @@ spec:
     spec:
         containers:
         - name: vessel
-          image: gcr.io/gcptraining-17042017/python-grpc-microservice/vessel:glbc
+          image: gcr.io/gcptraining-17042017/python-grpc-microservice/vessel:glbc_2
           imagePullPolicy: Always
           ports:
           - containerPort: 50052
             name: vessel-port
+          - containerPort: 9000
+            name: vheal-port
