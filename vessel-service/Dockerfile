@@ -9,6 +9,7 @@ WORKDIR /opt/
 
 copy . . 
 EXPOSE 50052
+Expose 9000
 
-ENTRYPOINT ["python","server.py"]
+ENTRYPOINT ["sh","run.py"]
 
