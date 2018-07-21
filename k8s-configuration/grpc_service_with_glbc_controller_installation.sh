@@ -32,7 +32,7 @@ sleep 3
 
 
 cd glbc-controller && bash script.sh -n $cluster_name -z $cluster_zone
-[[ $? -eq 0 ]] || echo -e "${RED} Delete the exisitng role and service account by manually executing script 'bash glbc-controller/script.sh -n myCluster -z myZone -c' and re-run this script ${NC}" && exit 1
+[[ $? -eq 0 ]] || echo -e "${RED} Delete the exisitng role and service account by manually executing script 'bash glbc-controller/script.sh -n myCluster -z myZone -c' and re-run this script ${NC}"
 
 
 cd ~/python_grpc/k8s-configuration/
