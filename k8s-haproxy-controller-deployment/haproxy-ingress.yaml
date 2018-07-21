@@ -33,6 +33,7 @@ spec:
         run: ingress-default-backend
     spec:
       terminationGracePeriodSeconds: 60
+      serviceAccountName: ingress-controller
       containers:
       - name: ingress-default-backend
         # Any image is permissible as long as:
