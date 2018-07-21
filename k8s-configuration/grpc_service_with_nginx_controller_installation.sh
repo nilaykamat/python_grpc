@@ -45,15 +45,18 @@ kubectl create -f nginx-controller/nginx_ingress_gRPC_rules.yaml
  
 echo -e "${RED}Setting up vessel-service ${NC}"
 
-kubectl create -f vessel-service/vessel_servicec.yaml
+#kubectl create -f vessel-service/vessel_servicec.yaml
+kubectl create -f vessel-service/vessel_servicec_test.yaml
 
 echo -e "${RED}Setting up consignment-service ${NC}"
 
-kubectl create -f consignment-service/consignment_service.yaml
+#kubectl create -f consignment-service/consignment_service.yaml
+kubectl create -f consignment-service/consignment_service_test.yaml
 
 echo -e "${RED}Setting up client-service ${NC}"
 
-kubectl create -f client-service/client_service.yaml
+#kubectl create -f client-service/client_service.yaml
+kubectl create -f client-service/client_service_test.yaml
 
 sleep 5
 

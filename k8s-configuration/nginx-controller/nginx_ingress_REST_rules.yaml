@@ -9,7 +9,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
   name: shippy-ingress
-  namespace: shippy-grpc
+  namespace: kube-system
 spec:
   tls:
   - hosts:

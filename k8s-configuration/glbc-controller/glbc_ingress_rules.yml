@@ -26,3 +26,27 @@ spec:
         backend:
           serviceName: client
           servicePort: 5000
+      - path: /Vessel.GetVessel
+        backend:
+          serviceName: vessel
+          servicePort: 50052
+      - path: /Vessel/GetVessel
+        backend:
+          serviceName: vessel
+          servicePort: 50052
+      - path: /Shipping.GetConsignment
+        backend:
+          serviceName: consignment
+          servicePort: 50051
+      - path: /Shipping/GetConsignment
+        backend:
+          serviceName: consignment
+          servicePort: 50051
+      - path: /Shipping.GetVesselForConsignment
+        backend:
+          serviceName: consignment
+          servicePort: 50051
+      - path: /Shipping/GetVesselForConsignment
+        backend:
+          serviceName: consignment
+          servicePort: 50051
