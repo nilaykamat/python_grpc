@@ -6,6 +6,7 @@ metadata:
   labels:
     app: consignment
 spec:
+  type: LoadBalancer
   ports:
   - port: 50051
     protocol: TCP

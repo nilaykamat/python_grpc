@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+  name: shippy-ingress
+  namespace: shippy-grpc
+spec:
+  tls:
+  - hosts:
+    - shippy.example.com
+    secretName: shippy-secret
+  rules:
+  - host: shippy.example.com
+    http:
+      paths:
+      - path: /ui
+        backend:
+          serviceName: client
+          servicePort: 5000 
+      - path: /getConsignment
+        backend:
+          serviceName: client
+          servicePort: 5000
+      - path: /getVessel
+        backend:
+          serviceName: client
+          servicePort: 5000

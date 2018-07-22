@@ -1,20 +1,17 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: client
+  name: client-deployment
   namespace: shippy-grpc
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      app: client
   template:
     metadata:
       labels:
-        app: client
+        app: client-app
     spec:
         containers:
-        - name: vessel
+        - name: client
           image: gcr.io/gcptraining-17042017/python-grpc-microservice/client:latest
           imagePullPolicy: Always
           ports:

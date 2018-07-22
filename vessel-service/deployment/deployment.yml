@@ -1,17 +1,14 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: vessel
+  name: vessel-deployment
   namespace: shippy-grpc
 spec:
   replicas: 2
-  selector:
-    matchLabels:
-      app: vessel
   template:
     metadata:
       labels:
-        app: vessel
+        app: vessel-app
     spec:
         containers:
         - name: vessel
