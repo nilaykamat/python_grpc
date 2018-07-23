@@ -4,8 +4,11 @@ from google.protobuf import json_format
 from consignment_protos import consignment_pb2
 from consignment_protos import consignment_pb2_grpc
 # open a gRPC channel
-
-channel = grpc.insecure_channel('shippy.example.com:80')
+with open('tls.crt') as f:
+    trusted_certs = f.read().encode()
+# create credentials
+credentials = grpc.ssl_channel_credentials(root_certificates=trusted_certs)
+channel = grpc.secure_channel('shippy.example.com:50051', credentials)
 
 
 # create a stub (client)
@@ -28,5 +31,5 @@ def get_vessel(consignment_id, consignment_name, consignment_weight):
     # return response in JSON format rather than object
     return json_format.MessageToJson(vessel_response)
 
-print get_vessel(1,'sample',200)
-print get_consignment(1)
+#print get_vessel(1,'sample',200)
+#print get_consignment(1)
