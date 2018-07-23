@@ -5,18 +5,7 @@ from consignment_protos import consignment_pb2
 from consignment_protos import consignment_pb2_grpc
 
 # open a gRPC channel
-
-
-###--------
-with open('tls.crt') as f:
-    trusted_certs = f.read().encode()
-# create credentials
-credentials = grpc.ssl_channel_credentials(root_certificates=trusted_certs)
-#channel = grpc.secure_channel('localhost:50051', credentials)
-channel = grpc.secure_channel('shippy.example.com:443', credentials)
-
-#channel = grpc.insecure_channel('localhost:50051')
-#channel = grpc.insecure_channel('35.238.186.17:50051')
+channel = grpc.insecure_channel('shippy.example.com:80')
 
 # create a stub (client)
 stub = consignment_pb2_grpc.ShippingStub(channel)
