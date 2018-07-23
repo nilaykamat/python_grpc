@@ -11,5 +11,5 @@ copy . .
 EXPOSE 50052
 Expose 9000
 
-ENTRYPOINT ["sh","run.py"]
+ENTRYPOINT ["python","server.py"]
 

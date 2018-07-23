@@ -1,0 +1,47 @@
+
+## consignment_service.yaml
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: consignment
+  namespace: shippy-grpc
+  labels:
+    app: consignment
+spec:
+  clusterIP: None
+  ports:
+  - port: 50051
+    protocol: TCP
+    targetPort: 50051
+  selector:
+    app: consignment
+
+---
+
+
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: consignment
+  namespace: shippy-grpc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: consignment
+  template:
+    metadata:
+      labels:
+        app: consignment
+    spec:
+        containers:
+        - name: consignment
+          image: gcr.io/gcptraining-17042017/python-grpc-microservice/consignment:haproxy
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 50051
+            name: cons-port
+
+
