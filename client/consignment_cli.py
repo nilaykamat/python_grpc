@@ -7,12 +7,12 @@ from consignment_protos import consignment_pb2_grpc
 
 ###--------
 
-with open('tls.crt') as f:
+with open('certs/tls.crt') as f:
     trusted_certs = f.read().encode()
 # create credentials
 credentials = grpc.ssl_channel_credentials(root_certificates=trusted_certs)
 #channel = grpc.secure_channel('localhost:50051', credentials)
-channel = grpc.secure_channel('shippy.example.com:443', credentials)
+channel = grpc.secure_channel('gship.example.com:443', credentials)
 
 ###--------
 

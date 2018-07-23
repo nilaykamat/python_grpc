@@ -8,15 +8,15 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
-  name: shippy-ingress
+  name: gship-ingress
   namespace: kube-system
 spec:
   tls:
   - hosts:
-    - shippy.example.com
-    secretName: shippy-secret
+    - gship.example.com
+    secretName: gship-secret
   rules:
-  - host: shippy.example.com
+  - host: gship.example.com
     http:
       paths:
       - path: /ui

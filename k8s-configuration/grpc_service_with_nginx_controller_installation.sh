@@ -25,7 +25,7 @@ kubectl create -f nginx-controller/config_map.yaml
 
 echo -e "${RED}Setting up TLS/SSL ${NC}"
 
-kubectl create secret tls shippy-secret --key nginx-controller/tls.key --cert nginx-controller/tls.crt --namespace=shippy-grpc
+kubectl create secret tls gship-secret --key nginx-controller/tls.key --cert nginx-controller/tls.crt --namespace=kube-system
 
 sleep 5
 
@@ -46,17 +46,17 @@ kubectl create -f nginx-controller/nginx_ingress_gRPC_rules.yaml
 echo -e "${RED}Setting up vessel-service ${NC}"
 
 #kubectl create -f vessel-service/vessel_servicec.yaml
-kubectl create -f vessel-service/vessel_servicec_test.yaml
+kubectl create -f vessel-service/vessel_service_nginx.yaml
 
 echo -e "${RED}Setting up consignment-service ${NC}"
 
 #kubectl create -f consignment-service/consignment_service.yaml
-kubectl create -f consignment-service/consignment_service_test.yaml
+kubectl create -f consignment-service/consignment_service_nginx.yaml
 
 echo -e "${RED}Setting up client-service ${NC}"
 
 #kubectl create -f client-service/client_service.yaml
-kubectl create -f client-service/client_service_test.yaml
+kubectl create -f client-service/client_service_nginx.yaml
 
 sleep 5
 
@@ -66,5 +66,5 @@ kubectl get pods,svc,ing,endpoints -o wide --all-namespaces
 
 echo -e "${RED}Get IP Address from 'kubectl get ing -o wide --all-namespaces' command and make entry in local hosts file to resolve domain name ${NC}"
 
-echo -e "${RED} Access https://shippy.example.com/ui ${NC}"
+echo -e "${RED} Access https://gship.example.com/ui ${NC}"
 

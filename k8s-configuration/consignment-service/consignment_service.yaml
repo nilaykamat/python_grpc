@@ -10,7 +10,8 @@ metadata:
   labels:
     app: consignment
 spec:
-  clusterIP: None
+#  clusterIP: None
+  type: NodePort
   ports:
   - port: 50051
     protocol: TCP
@@ -38,7 +39,7 @@ spec:
     spec:
         containers:
         - name: consignment
-          image: gcr.io/gcptraining-17042017/python-grpc-microservice/consignment:ssl2
+          image: gcr.io/gcptraining-17042017/python-grpc-microservice/consignment:glbc_2
           imagePullPolicy: Always
           ports:
           - containerPort: 50051

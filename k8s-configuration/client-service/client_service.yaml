@@ -35,7 +35,7 @@ spec:
     spec:
         containers:
         - name: vessel
-          image: gcr.io/gcptraining-17042017/python-grpc-microservice/client:ssl2
+          image: gcr.io/gcptraining-17042017/python-grpc-microservice/client:glbc
           imagePullPolicy: Always
           ports:
           - containerPort: 5000

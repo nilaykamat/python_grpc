@@ -48,9 +48,9 @@ server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 consignment_pb2_grpc.add_ShippingServicer_to_server(ShippingServicer(), server)
 
 ###--------
-with open(os.path.join(os.path.split(__file__)[0], 'tls.key')) as f:
+with open(os.path.join(os.path.split(__file__)[0], 'certs/tls.key')) as f:
     private_key = f.read().encode()
-with open(os.path.join(os.path.split(__file__)[0], 'tls.crt')) as f:
+with open(os.path.join(os.path.split(__file__)[0], 'certs/tls.crt')) as f:
     certificate_chain = f.read().encode()
 ###-------
 
