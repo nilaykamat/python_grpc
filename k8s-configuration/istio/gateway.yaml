@@ -1,0 +1,70 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+ name: istio-gateway
+spec:
+ selector:
+   istio: ingressgateway # use istio default controller
+ servers:
+ - port:
+     number: 80
+     name: http
+     protocol: HTTP
+   hosts:
+   - gship.example.com
+   tls:
+      httpsRedirect: true # sends 302 redirect for http requests
+ - port:
+     number: 443
+     name: https
+     protocol: HTTPS
+   hosts:
+   - gship.example.com
+   tls:
+     mode: SIMPLE
+     serverCertificate: cert/tls.crt
+     privateKey: cert/tls.key
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+ name: istio-vs
+spec:
+  hosts:
+  - gship.example.com
+  gateways: istio-gateway
+  tcp:
+  - match:
+    - uri:
+        exact: /ui
+    - uri:
+        exact: /getConsignment
+    - uri:
+        exact: /getVessel
+    route:
+    - destination:
+        host: client
+        port:
+          number: 5000
+#      weight: 100
+#  grpc:
+#  - match:
+#      uri:
+#        exact: /Vessel/GetVessel
+#    route:
+#    - destination:
+#        host: vessel
+#        port: 
+#          number: 50052 # can be omitted if its the only port for reviews
+#      weight: 100
+#  - match:
+#    - uri:
+#        exact: /Shipping/GetConsignment
+#    - uri:
+#        exact: /Shipping/GetVesselForConsignment
+#    route:
+#    - destination:
+#        host: consignment
+#        port:
+#          number: 50051
+#      weight: 100
