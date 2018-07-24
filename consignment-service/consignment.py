@@ -42,7 +42,7 @@ def get_vessel_for_consignment(consignment):
     with open('tls.crt') as f:
         trusted_certs = f.read().encode()
     credentials = grpc.ssl_channel_credentials(root_certificates=trusted_certs)
-    channel = grpc.secure_channel('shippy.example.com:50052', credentials)
+    channel = grpc.secure_channel('vessel:50052', credentials)
     # open a gRPC channel
 
     # create a stub (client)

@@ -8,7 +8,7 @@ with open('tls.crt') as f:
     trusted_certs = f.read().encode()
 # create credentials
 credentials = grpc.ssl_channel_credentials(root_certificates=trusted_certs)
-channel = grpc.secure_channel('shippy.example.com:50051', credentials)
+channel = grpc.secure_channel('shippy.example.com:443', credentials)
 
 
 # create a stub (client)

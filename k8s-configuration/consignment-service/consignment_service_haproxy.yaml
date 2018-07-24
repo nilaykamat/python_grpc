@@ -38,7 +38,7 @@ spec:
     spec:
         containers:
         - name: consignment
-          image: gcr.io/gcptraining-17042017/python-grpc-microservice/consignment:haproxy
+          image: gcr.io/gcptraining-17042017/python-grpc-microservice/consignment:haproxy_2
           imagePullPolicy: Always
           ports:
           - containerPort: 50051
