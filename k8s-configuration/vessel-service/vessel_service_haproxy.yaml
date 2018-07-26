@@ -36,7 +36,7 @@ spec:
     spec:
         containers:
         - name: vessel
-          image: gcr.io/gcptraining-17042017/python-grpc-microservice/vessel:haproxy_nossl
+          image: gcr.io/gcptraining-17042017/python-grpc-microservice/vessel:haproxy2048
           imagePullPolicy: Always
           ports:
           - containerPort: 50052

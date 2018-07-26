@@ -35,5 +35,5 @@ def get_vessel(consignment_id, consignment_name, consignment_weight):
     # return response in JSON format rather than object
     return json_format.MessageToJson(vessel_response)
 
-print get_vessel(1,'sample',200)
+#print get_vessel(1,'sample',200)
 print get_consignment(1) 
