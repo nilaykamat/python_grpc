@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+message CarrierItem {
+    int32 id = 1;
+    int32 max_weight = 2;
+}
+
+message GetCarrierRequest {
+    int32 weight = 1;
+}
+
+service Carrier {
+	rpc GetCarrier(GetCarrierRequest) returns (CarrierItem) {}
+}

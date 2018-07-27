@@ -44,40 +44,40 @@
 			<div class="col-md-6">
 				<div class="card">
 					<div class="card-body">
-						<h4 class="card-title">Get Consignment</h4>
-						<h6 class="card-subtitle mb-2 text-muted">Enter your Consignment id (from 1 to 5)</h6>
+						<h4 class="card-title">Get Shipment</h4>
+						<h6 class="card-subtitle mb-2 text-muted">Enter your Shipment id (from 1 to 5)</h6>
 						<form>
 							<div class="form-group">
 								<div class="input-group">
-									<input type="text" class="form-control form-control-sm" id="txtConsignmentId" placeholder="Consignment Id">
+									<input type="text" class="form-control form-control-sm" id="txtShipmentId" placeholder="Shipment Id">
 								</div>
 							</div>
-                            <button type="button" id="btnGetConsignment" class="btn btn-primary btn-sm">Get Container</button>
+                            <button type="button" id="btnGetShipment" class="btn btn-primary btn-sm">Get Container</button>
 						</form>
 						<div class="clearfix"></div>
-						<pre id="consignmentResponse"></pre>
+						<pre id="shipmentResponse"></pre>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="card">
 					<div class="card-body">
-						<h4 class="card-title">Get Vessel For Consignment</h4>
-						<h6 class="card-subtitle mb-2 text-muted">Enter your Consignment Details you got from previous step (weight cannot be more than 1500)</h6>
+						<h4 class="card-title">Get Carrier For Shipment</h4>
+						<h6 class="card-subtitle mb-2 text-muted">Enter your Shipment Details you got from previous step (weight cannot be more than 1500)</h6>
 						<form>
 							<div class="form-group">
-								<input type="text" class="form-control form-control-sm" id="txtConsignmentVesselId" placeholder="Consignment Id">
+								<input type="text" class="form-control form-control-sm" id="txtShipmentCarrierId" placeholder="Shipment Id">
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control form-control-sm" id="txtConsignmentName" placeholder="Consignment Name">
+								<input type="text" class="form-control form-control-sm" id="txtShipmentName" placeholder="Shipment Name">
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control form-control-sm" id="txtConsignmentWeight" placeholder="Consignment Weight">
+								<input type="text" class="form-control form-control-sm" id="txtShipmentWeight" placeholder="Shipment Weight">
 							</div>
-							<button type="button" id="btnGetVessel" class="btn btn-primary btn-sm pull-right">Get Vessel</button>
+							<button type="button" id="btnGetCarrier" class="btn btn-primary btn-sm pull-right">Get Carrier</button>
 						</form>
 						<div class="clearfix"></div>
-						<pre id="vesselStatus"></pre>
+						<pre id="carrierStatus"></pre>
 					</div>
 				</div>
 			</div>
@@ -85,37 +85,37 @@
 
 	<script>
 		$(document).ready(function () {
-			$("#btnGetConsignment").click(function () {
-				var consignmentId = $("#txtConsignmentId").val();
+			$("#btnGetShipment").click(function () {
+				var shipmentId = $("#txtShipmentId").val();
 				$.ajax({
-					url: '/getConsignment',
+					url: '/getShipment',
 					contentType: "application/json",
 					type: 'POST',
 					dataType: 'json',
 					data: JSON.stringify({
-						consignment_id : consignmentId
+						shipment_id : shipmentId
 					}),
 					success: function (data) {
-                        $("#consignmentResponse").html(JSON.stringify(data, undefined, 2) + '<br>');
+                        $("#shipmentResponse").html(JSON.stringify(data, undefined, 2) + '<br>');
 					}
 				});
 			});
-			$("#btnGetVessel").click(function () {
-				var consignmentId = $("#txtConsignmentVesselId").val();
-				var consignmentName = $("#txtConsignmentName").val();
-				var consignmentWeight = $("#txtConsignmentWeight").val();
+			$("#btnGetCarrier").click(function () {
+				var shipmentId = $("#txtShipmentCarrierId").val();
+				var shipmentName = $("#txtShipmentName").val();
+				var shipmentWeight = $("#txtShipmentWeight").val();
 				$.ajax({
-					url: '/getVessel',
+					url: '/getCarrier',
 					contentType: "application/json",
 					type: 'POST',
 					dataType: 'json',
 					data: JSON.stringify({
-						id : consignmentId,
-						name : consignmentName,
-						weight : consignmentWeight
+						id : shipmentId,
+						name : shipmentName,
+						weight : shipmentWeight
 					}),
 					success: function (data) {
-                        $("#vesselStatus").html(JSON.stringify(data, undefined, 2) + '<br>');
+                        $("#carrierStatus").html(JSON.stringify(data, undefined, 2) + '<br>');
 					}
 				});
 			});
