@@ -12,7 +12,7 @@ with open('tls.crt') as f:
 # create credentials
 credentials = grpc.ssl_channel_credentials(root_certificates=trusted_certs)
 #channel = grpc.secure_channel('localhost:50051', credentials)
-channel = grpc.secure_channel('shippy.example.com:443', credentials)
+channel = grpc.secure_channel('gship.example.com:443', credentials)
 
 ###--------
 

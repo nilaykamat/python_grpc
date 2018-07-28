@@ -17,6 +17,7 @@ credentials = grpc.ssl_channel_credentials(root_certificates=trusted_certs)
 #channel = grpc.secure_channel('shippy.example.com:50052', credentials)
 #channel = grpc.secure_channel('shippy.example.com:443', credentials)
 channel = grpc.secure_channel('gship.example.com:443', credentials)
+#channel = grpc.secure_channel('gship.example.com:50052', credentials)
 
 ###--------
 

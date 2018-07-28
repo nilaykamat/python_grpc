@@ -6,7 +6,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: consignment
-  namespace: shippy-grpc
+  namespace: istio-system
   labels:
     app: consignment
 spec:
@@ -26,7 +26,7 @@ apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: consignment
-  namespace: shippy-grpc
+  namespace: istio-system
 spec:
   replicas: 2
   selector:
@@ -39,7 +39,7 @@ spec:
     spec:
         containers:
         - name: consignment
-          image: gcr.io/gcptraining-17042017/python-grpc-microservice/consignment:nginx
+          image: gcr.io/gcptraining-17042017/python-grpc-microservice/consignment:istio_ssl4096
           imagePullPolicy: Always
           ports:
           - containerPort: 50051

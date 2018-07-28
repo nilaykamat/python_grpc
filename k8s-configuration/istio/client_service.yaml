@@ -5,7 +5,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: client
-  namespace: shippy-grpc
+  namespace: istio-system
   labels:
     app: client
 spec:
@@ -22,7 +22,7 @@ apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: client
-  namespace: shippy-grpc
+  namespace: istio-system
 spec:
   replicas: 1
   selector:
@@ -35,7 +35,7 @@ spec:
     spec:
         containers:
         - name: vessel
-          image: gcr.io/gcptraining-17042017/python-grpc-microservice/client:nginx
+          image: gcr.io/gcptraining-17042017/python-grpc-microservice/client:istio_ssl4096
           imagePullPolicy: Always
           ports:
           - containerPort: 5000

@@ -1,11 +1,12 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
- name: istio-vs
+  name: istio-vs
+  namespace: istio-system
 spec:
   hosts:
-  - gship.example.com
-  gateways:
+  - "*"
+  gateways: 
   - istio-gateway
   http:
   - match:
@@ -22,7 +23,7 @@ spec:
           number: 5000
       weight: 100
   - match:
-      uri:
+    - uri:
         exact: /Vessel/GetVessel
     route:
     - destination:
