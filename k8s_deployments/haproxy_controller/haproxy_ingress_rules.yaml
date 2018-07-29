@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "haproxy"
+  name: haproxy-ingress
+  namespace: kube-system
+spec:
+  tls:
+  - hosts:
+    - delivery.gship.com
+    secretName: delivery-secret
+  rules:
+  - host: delivery.gship.com
+    http:
+      paths:
+      - path: /ui
+        backend:
+          serviceName: client
+          servicePort: 5000 
+      - path: /getShippment
+        backend:
+          serviceName: client
+          servicePort: 5000
+      - path: /getCarrier
+        backend:
+          serviceName: client
+          servicePort: 5000

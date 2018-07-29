@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Kubernetes UI</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	 crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	 crossorigin="anonymous">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+	 crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	 crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<style>
+		* {
+			font-family: 'Lato', sans-serif;
+			line-height: 2;
+    		letter-spacing: 0.5px;
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-dark bg-primary">
+		<div class="container">
+			<span class="navbar-brand mb-0 h1">
+				<i class="fa fa-share"></i>
+			</span>
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="#">Google gRPC Kubernetes Testing</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="mt-5"></div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">Get Shipment</h4>
+						<h6 class="card-subtitle mb-2 text-muted">Enter your Shipment id (from 1 to 5)</h6>
+						<form>
+							<div class="form-group">
+								<div class="input-group">
+									<input type="text" class="form-control form-control-sm" id="txtShipmentId" placeholder="Shipment Id">
+								</div>
+							</div>
+                            <button type="button" id="btnGetShipment" class="btn btn-primary btn-sm">Get Container</button>
+						</form>
+						<div class="clearfix"></div>
+						<pre id="shipmentResponse"></pre>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">Get Carrier For Shipment</h4>
+						<h6 class="card-subtitle mb-2 text-muted">Enter your Shipment Details you got from previous step (weight cannot be more than 1500)</h6>
+						<form>
+							<div class="form-group">
+								<input type="text" class="form-control form-control-sm" id="txtShipmentCarrierId" placeholder="Shipment Id">
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control form-control-sm" id="txtShipmentName" placeholder="Shipment Name">
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control form-control-sm" id="txtShipmentWeight" placeholder="Shipment Weight">
+							</div>
+							<button type="button" id="btnGetCarrier" class="btn btn-primary btn-sm pull-right">Get Carrier</button>
+						</form>
+						<div class="clearfix"></div>
+						<pre id="carrierStatus"></pre>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<script>
+		$(document).ready(function () {
+			$("#btnGetShipment").click(function () {
+				var shipmentId = $("#txtShipmentId").val();
+				$.ajax({
+					url: '/getShipment',
+					contentType: "application/json",
+					type: 'POST',
+					dataType: 'json',
+					data: JSON.stringify({
+						shipment_id : shipmentId
+					}),
+					success: function (data) {
+                        $("#shipmentResponse").html(JSON.stringify(data, undefined, 2) + '<br>');
+					}
+				});
+			});
+			$("#btnGetCarrier").click(function () {
+				var shipmentId = $("#txtShipmentCarrierId").val();
+				var shipmentName = $("#txtShipmentName").val();
+				var shipmentWeight = $("#txtShipmentWeight").val();
+				$.ajax({
+					url: '/getCarrier',
+					contentType: "application/json",
+					type: 'POST',
+					dataType: 'json',
+					data: JSON.stringify({
+						id : shipmentId,
+						name : shipmentName,
+						weight : shipmentWeight
+					}),
+					success: function (data) {
+                        $("#carrierStatus").html(JSON.stringify(data, undefined, 2) + '<br>');
+					}
+				});
+			});
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+message ShipmentItem {
+    int32 id = 1;
+    string name = 2;
+    int32 weight = 3;
+}
+
+message ShipmentCarrier {
+    int32 id = 1;
+    int32 max_weight = 2;
+}
+
+message GetShipmentRequest {
+    int32 shipment_id = 1;
+}
+
+service Shipment {
+	rpc GetShipment(GetShipmentRequest) returns (ShipmentItem) {}
+    rpc GetCarrierForShipment(ShipmentItem) returns(ShipmentCarrier) {}
+}
