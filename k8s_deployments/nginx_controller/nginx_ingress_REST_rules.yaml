@@ -22,7 +22,7 @@ spec:
         backend:
           serviceName: client
           servicePort: 5000
-      - path: /getShippment
+      - path: /getShipment
         backend:
           serviceName: client
           servicePort: 5000

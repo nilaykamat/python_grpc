@@ -23,11 +23,11 @@ spec:
         backend:
           serviceName: carrier
           servicePort: 50052
-      - path: /Shippment/GetShippment
+      - path: /Shipment/GetShipment
         backend:
           serviceName: shippment
           servicePort: 50051
-      - path: /Shippment/GetCarrierForShippment
+      - path: /Shipment/GetCarrierForShipment
         backend:
           serviceName: shippment
           servicePort: 50051
