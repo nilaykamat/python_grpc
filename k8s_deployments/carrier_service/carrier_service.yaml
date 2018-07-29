@@ -1,42 +1,42 @@
-## client_service.yaml
+## carrier_servicec.yaml
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: client
+  name: carrier
   namespace: kube-system
   labels:
-    app: client
+    app: carrier
 spec:
-  type: LoadBalancer
+  clusterIP: None
   ports:
-  - port: 5000
+  - port: 50052
     protocol: TCP
-    targetPort: 5000
+    targetPort: 50052
   selector:
-    app: client
+    app: carrier
 
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: client
+  name: carrier
   namespace: kube-system
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: client
+      app: carrier
   template:
     metadata:
       labels:
-        app: client
+        app: carrier
     spec:
         containers:
-        - name: client
-          image: gcr.io/grcp-on-gke/grpc-microservice/client:nginx
+        - name: carrier
+          image: gcr.io/grcp-on-gke/grpc-microservice/carrier:nginx
           imagePullPolicy: Always
           ports:
-          - containerPort: 5000
-            name: client-port
+          - containerPort: 50052
+            name: carrier-port

@@ -6,8 +6,3 @@ kind: Namespace
 metadata:
   name: ingress-nginx
 
-#---
-#apiVersion: v1
-#kind: Namespace
-#metadata:
-#  name: shippy-grpc

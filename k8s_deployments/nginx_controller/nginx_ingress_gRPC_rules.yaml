@@ -16,7 +16,7 @@ spec:
     - delivery.gship.com
     secretName: delivery-secret
   rules:
-  - host: delivery.example.com
+  - host: delivery.gship.com
     http:
       paths:
       - path: /Carrier/GetCarrier

@@ -49,7 +49,8 @@ print('Starting server. Listening on port 50052.')
 #server.add_secure_port('[::]:50052', server_creds)
 ###-------
 
-server.add_insecure_port('localhost:50052')
+#server.add_insecure_port('localhost:50052')
+server.add_insecure_port('[::]:50052')
 server.start()
 # since server.start() will not block,
 # a sleep-loop is added to keep alive
