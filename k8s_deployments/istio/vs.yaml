@@ -1,20 +1,21 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
- name: istio-vs
+  name: istio-vs
+  namespace: istio-system
 spec:
   hosts:
-  - gship.example.com
-  gateways:
+  - "*"
+  gateways: 
   - istio-gateway
   http:
   - match:
     - uri:
         exact: /ui
     - uri:
-        exact: /getConsignment
+        exact: /getShippment
     - uri:
-        exact: /getVessel
+        exact: /getCarrier
     route:
     - destination:
         host: client
@@ -22,22 +23,22 @@ spec:
           number: 5000
       weight: 100
   - match:
-      uri:
-        exact: /Vessel/GetVessel
+    - uri:
+        exact: /Carrier/GetCarrier
     route:
     - destination:
-        host: vessel
+        host: carrier
         port: 
-          number: 50052 # can be omitted if its the only port for reviews
+          number: 50052 
       weight: 100
   - match:
     - uri:
-        exact: /Shipping/GetConsignment
+        exact: /Shipment/GetShipment
     - uri:
-        exact: /Shipping/GetVesselForConsignment
+        exact: /Shipment/GetCarrierForShipment
     route:
     - destination:
-        host: consignment
+        host: shippment
         port:
           number: 50051
       weight: 100

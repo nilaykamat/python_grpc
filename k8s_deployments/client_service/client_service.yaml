@@ -1,11 +1,10 @@
 ## client_service.yaml
-
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: client
-  namespace: kube-system
+  namespace: istio-system
   labels:
     app: client
 spec:
@@ -16,13 +15,12 @@ spec:
     targetPort: 5000
   selector:
     app: client
-
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: client
-  namespace: kube-system
+  namespace: istio-system
 spec:
   replicas: 1
   selector:
@@ -35,7 +33,7 @@ spec:
     spec:
         containers:
         - name: client
-          image: gcr.io/grcp-on-gke/grpc-microservice/client:haproxy
+          image: gcr.io/grcp-on-gke/grpc-microservice/client:istio
           imagePullPolicy: Always
           ports:
           - containerPort: 5000

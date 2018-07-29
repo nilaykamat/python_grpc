@@ -1,31 +1,27 @@
-
 ## shippment_service.yaml
-
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: shippment
-  namespace: kube-system
+  namespace: istio-system
   labels:
     app: shippment
 spec:
-  clusterIP: None
+  type: NodePort
   ports:
   - port: 50051
     protocol: TCP
+    name: grpc
     targetPort: 50051
   selector:
     app: shippment
-
 ---
-
-
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: shippment
-  namespace: kube-system
+  namespace: istio-system
 spec:
   replicas: 2
   selector:
@@ -38,10 +34,8 @@ spec:
     spec:
         containers:
         - name: shippment
-          image: gcr.io/grcp-on-gke/grpc-microservice/shippment:haproxy
+          image: gcr.io/grcp-on-gke/grpc-microservice/shippment:istio
           imagePullPolicy: Always
           ports:
           - containerPort: 50051
             name: ship-port
-
-
