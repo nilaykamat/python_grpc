@@ -47,7 +47,8 @@ def get_carrier_for_shipment(shipment):
          trusted_certs = f.read().encode()
  # create credentials
     credentials = grpc.ssl_channel_credentials(root_certificates=trusted_certs)
-    channel = grpc.secure_channel('delivery.gship.com:443', credentials)
+    #channel = grpc.secure_channel('delivery.gship.com:443', credentials)
+    channel = grpc.secure_channel('carrier:50052', credentials)
 
 
     #channel = grpc.insecure_channel('localhost:50052')

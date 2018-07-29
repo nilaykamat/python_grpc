@@ -35,7 +35,7 @@ spec:
     spec:
         containers:
         - name: client
-          image: gcr.io/grcp-on-gke/grpc-microservice/client:nginx
+          image: gcr.io/grcp-on-gke/grpc-microservice/client:haproxy
           imagePullPolicy: Always
           ports:
           - containerPort: 5000

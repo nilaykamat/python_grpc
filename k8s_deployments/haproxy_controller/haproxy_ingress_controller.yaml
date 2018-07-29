@@ -1,3 +1,5 @@
+
+---
 kind: Service
 apiVersion: v1
 metadata:
@@ -20,7 +22,6 @@ spec:
   - name: stat
     port: 1936
     targetPort: stat
-
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -41,7 +42,7 @@ spec:
       serviceAccountName: ingress-controller
       containers:
       - name: haproxy-ingress
-        image: quay.io/jcmoraisjr/haproxy-ingress
+        image: quay.io/jcmoraisjr/haproxy-ingress:v0.6-beta.2
         args:
         - --default-backend-service=$(POD_NAMESPACE)/ingress-default-backend
         - --default-ssl-certificate=$(POD_NAMESPACE)/tls-secret
@@ -62,4 +63,4 @@ spec:
         - name: POD_NAMESPACE
           valueFrom:
             fieldRef:
-              fieldPath: metadata.namespaces
+              fieldPath: metadata.namespace
