@@ -1,0 +1,63 @@
+
+## consignment_service.yaml
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: consignment
+  namespace: shippy-grpc
+  annotations:
+     service.alpha.kubernetes.io/app-protocols: '{"http2-service":"HTTP2"}'
+  labels:
+    app: consignment
+spec:
+  type: NodePort
+  ports:
+  - port: 50051
+    protocol: TCP
+    targetPort: 50051
+    name: http2-service
+  - port: 8080
+    protocol: TCP
+    targetPort: 9000
+    name: cons-health
+  selector:
+    app: consignment
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: consignment
+  namespace: shippy-grpc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: consignment
+  template:
+    metadata:
+      labels:
+        app: consignment
+    spec:
+        containers:
+        - name: consignment
+          image: gcr.io/gcptraining-17042017/python-grpc-microservice/consignment:glbc_2
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 50051
+            name: cons-port
+          - containerPort: 9000
+            name: cheal-port
+          readinessProbe:
+            tcpSocket:
+              port: cons-port
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: cons-port
+            initialDelaySeconds: 15
+            periodSeconds: 20
+
+

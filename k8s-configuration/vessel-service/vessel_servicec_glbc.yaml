@@ -1,0 +1,62 @@
+## vessel_servicec.yaml
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vessel
+  namespace: shippy-grpc
+  annotations:
+     service.alpha.kubernetes.io/app-protocols: '{"http2-service":"HTTP2"}'
+  labels:
+    app: vessel
+spec:
+  type: NodePort
+  ports:
+  - port: 50052
+    protocol: TCP
+    targetPort: 50052
+    name: http2-service
+  - port: 9000
+    protocol: TCP
+    targetPort: 9000
+    name: vess-heal
+  selector:
+    app: vessel
+
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: vessel
+  namespace: shippy-grpc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: vessel
+  template:
+    metadata:
+      labels:
+        app: vessel
+    spec:
+        containers:
+        - name: vessel
+          image: gcr.io/gcptraining-17042017/python-grpc-microservice/vessel:glbc_2
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 50052
+            name: vessel-port
+          - containerPort: 9000
+            name: vheal-port
+          readinessProbe:
+            tcpSocket:
+              port: vessel-port
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: vessel-port
+            initialDelaySeconds: 15
+            periodSeconds: 20
+

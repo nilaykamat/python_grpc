@@ -20,19 +20,21 @@ done
 
 read -p " Enter name of the cluster : " cluster_name
 read -p " Enter zone of the cluster : " cluster_zone
-read -p " Enter USER_ACCOUNT ( USER_ACCOUNT is the user's email address) : " USER_ACCOUNT 
+#read -p " Enter USER_ACCOUNT ( USER_ACCOUNT is the user's email address) : " USER_ACCOUNT 
 
-echo -e "${RED}Prerequisites for using Role-Based Access Control ${NC}"
+#echo -e "${RED}Prerequisites for using Role-Based Access Control ${NC}"
 
-echo -e "${RED}kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user [USER_ACCOUNT] ${NC}"
+#echo -e "${RED}kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user [USER_ACCOUNT] ${NC}"
 
-kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user $USER_ACCOUNT
+#kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user $USER_ACCOUNT
 
 sleep 3
 
 
 cd glbc-controller && bash script.sh -n $cluster_name -z $cluster_zone
 [[ $? -eq 0 ]] || echo -e "${RED} Delete the exisitng role and service account by manually executing script 'bash glbc-controller/script.sh -n myCluster -z myZone -c' and re-run this script ${NC}"
+
+exit 1 
 
 
 cd ~/python_grpc/k8s-configuration/
