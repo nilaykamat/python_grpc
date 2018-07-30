@@ -43,16 +43,16 @@ def get_carrier_for_shipment(shipment):
     # open a gRPC channel
 
 ###--------
-    with open('certs/tls.crt') as f:
-         trusted_certs = f.read().encode()
+#    with open('certs/tls.crt') as f:
+#         trusted_certs = f.read().encode()
  # create credentials
-    credentials = grpc.ssl_channel_credentials(root_certificates=trusted_certs)
+#    credentials = grpc.ssl_channel_credentials(root_certificates=trusted_certs)
     #channel = grpc.secure_channel('delivery.gship.com:443', credentials)
-    channel = grpc.secure_channel('carrier:50052', credentials)
+#    channel = grpc.secure_channel('carrier:50052', credentials)
 
 
     #channel = grpc.insecure_channel('localhost:50052')
-    # channel = grpc.insecure_channel('vessel:50052')
+    channel = grpc.insecure_channel('carrier:50052')
 
     # create a stub (client)
     stub = carrier_pb2_grpc.CarrierStub(channel)

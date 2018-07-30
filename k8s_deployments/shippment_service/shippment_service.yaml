@@ -34,7 +34,7 @@ spec:
     spec:
         containers:
         - name: shippment
-          image: gcr.io/grcp-on-gke/grpc-microservice/shippment:istio
+          image: gcr.io/grcp-on-gke/grpc-microservice/shippment:istio_insecure
           imagePullPolicy: Always
           ports:
           - containerPort: 50051
