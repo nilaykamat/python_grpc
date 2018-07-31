@@ -42,7 +42,7 @@ spec:
     spec:
         containers:
         - name: vessel
-          image: gcr.io/gcptraining-17042017/python-grpc-microservice/vessel:glbc_2
+          image: gcr.io/gcptraining-17042017/python-grpc-microservice/vessel:http2
           imagePullPolicy: Always
           ports:
           - containerPort: 50052
@@ -50,13 +50,14 @@ spec:
           - containerPort: 9000
             name: vheal-port
           readinessProbe:
-            tcpSocket:
-              port: vessel-port
-            initialDelaySeconds: 5
+            httpGet:
+              path: /
+              port: vheal-port
+            initialDelaySeconds: 3
             periodSeconds: 10
           livenessProbe:
-            tcpSocket:
-              port: vessel-port
-            initialDelaySeconds: 15
-            periodSeconds: 20
-
+            httpGet:
+              path: /      
+              port: vheal-port
+            initialDelaySeconds: 5
+            periodSeconds: 15
