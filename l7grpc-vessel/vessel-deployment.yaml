@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: vessel
+  labels:
+    app: vessel
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: vessel
+    spec:
+        containers:
+        - name: vessel
+          image: gcr.io/gcptraining-17042017/python-grpc-microservice/vessel:glbc_2
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 50052
+            protocol: TCP
+            name: vessel-port
+          - containerPort: 9000
+            protocol: TCP
+            name: vheal-port

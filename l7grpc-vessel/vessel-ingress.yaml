@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+  name: shippy-ingress
+spec:
+  tls:
+  - hosts:
+    - main.esodemoapp2.com
+    secretName: shippy-secret
+  backend:
+    serviceName: vessel
+    servicePort: 50052

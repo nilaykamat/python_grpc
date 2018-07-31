@@ -33,9 +33,9 @@ vessel_pb2_grpc.add_VesselServicer_to_server(VesselServicer(), server)
 
 
 ###--------
-with open(os.path.join(os.path.split(__file__)[0], 'privkey.pem')) as f:
+with open(os.path.join(os.path.split(__file__)[0], 'server_key.pem')) as f:
     private_key = f.read().encode()
-with open(os.path.join(os.path.split(__file__)[0], 'fullchain.pem')) as f:
+with open(os.path.join(os.path.split(__file__)[0], 'server_crt.pem')) as f:
     certificate_chain = f.read().encode()
 ###-------
 
