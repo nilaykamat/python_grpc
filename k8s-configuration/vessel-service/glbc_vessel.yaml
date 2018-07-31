@@ -38,7 +38,7 @@ spec:
     spec:
         containers:
         - name: vessel
-          image: gcr.io/gcptraining-17042017/python-grpc-microservice/vessel:glbc_2
+          image: gcr.io/gcptraining-17042017/python-grpc-microservice/vessel:adzmash
           imagePullPolicy: Always
           ports:
           - containerPort: 50052
