@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+  name: shippy-ingress
+  namespace: shippy-grpc
+spec:
+  tls:
+  - hosts:
+    - www.adzmash.com
+    secretName: shippy-secret
+  rules:
+  - host: www.adzmash.com
+    http:
+      paths:
+      - path: /Vessel/GetVessel
+        backend:
+          serviceName: vessel
+          servicePort: 50052

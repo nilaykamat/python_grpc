@@ -48,9 +48,9 @@ spec:
 #              port: vessel-port
 #            initialDelaySeconds: 5
 #            periodSeconds: 10
-          livenessProbe:
-            tcpSocket:
-              port: vessel-port
-            initialDelaySeconds: 15
-            periodSeconds: 20
+#          livenessProbe:
+#            tcpSocket:
+#              port: vessel-port
+#            initialDelaySeconds: 15
+#            periodSeconds: 20
 
