@@ -34,7 +34,7 @@ spec:
     spec:
         containers:
         - name: carrier
-          image: gcr.io/grcp-on-gke/grpc-microservice/carrier:istio
+          image: gcr.io/grcp-on-gke/grpc-microservice/carrier:nginx
           imagePullPolicy: Always
           ports:
           - containerPort: 50052

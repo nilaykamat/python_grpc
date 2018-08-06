@@ -13,7 +13,7 @@ spec:
     - uri:
         exact: /ui
     - uri:
-        exact: /getShippment
+        exact: /getShipment
     - uri:
         exact: /getCarrier
     route:
