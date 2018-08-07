@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: neg-demo-app
+  name: neg-demo-app
+spec:
+  minReadySeconds: 60
+  template:
+    metadata:
+      labels:
+        run: neg-demo-app
+      annotations:
+        templateCreationTime: "`date`"
+    spec:
+      containers:
+      - image: gcr.io/kubernetes-e2e-test-images/serve-hostname-amd64:1.1
+        name: hostname
+        ports:
+        - containerPort: 9376
+          protocol: TCP
+      terminationGracePeriodSeconds: 60
+

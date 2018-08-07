@@ -1,0 +1,9 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: neg-demo-ing
+spec:
+  backend:
+    serviceName: neg-demo-app
+    servicePort: 80
+
