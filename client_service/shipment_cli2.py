@@ -40,5 +40,5 @@ def get_carrier(shipment_id, shipment_name, shipment_weight):
     # return response in JSON format rather than object
     return json_format.MessageToJson(carrier_response)
 
-#print get_carrier(1,'sample',200)
+print get_carrier(1,'sample',200)
 print get_shipment(1)

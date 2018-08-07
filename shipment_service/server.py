@@ -60,12 +60,12 @@ print('Starting server. Listening on port 50051.')
 
 ###-------
 # create server credentials
-server_creds = grpc.ssl_server_credentials(((private_key, certificate_chain,),))
+#server_creds = grpc.ssl_server_credentials(((private_key, certificate_chain,),))
 #server.add_secure_port('localhost:50051', server_creds)
-server.add_secure_port('[::]:50051', server_creds)
+#server.add_secure_port('[::]:50051', server_creds)
 ###-------
 
-#server.add_insecure_port('[::]:50051')
+server.add_insecure_port('[::]:50051')
 server.start()
 
 # since server.start() will not block,
