@@ -42,8 +42,8 @@ spec:
             name: client-port
           resources:
             requests:
-              memory: "64Mi"
+              memory: "256Mi"
               cpu: "250m"
             limits:
-              memory: "64Mi"
+              memory: "256Mi"
               cpu: "250m"
