@@ -1,14 +1,14 @@
 
-## shippment_service.yaml
+## shipment_service.yaml
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: shippment
+  name: shipment
   namespace: kube-system
   labels:
-    app: shippment
+    app: shipment
 spec:
   clusterIP: None
   ports:
@@ -16,7 +16,7 @@ spec:
     protocol: TCP
     targetPort: 50051
   selector:
-    app: shippment
+    app: shipment
 
 ---
 
@@ -24,24 +24,29 @@ spec:
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: shippment
+  name: shipment
   namespace: kube-system
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: shippment
+      app: shipment
   template:
     metadata:
       labels:
-        app: shippment
+        app: shipment
     spec:
         containers:
-        - name: shippment
+        - name: shipment
           image: gcr.io/grcp-on-gke/grpc-microservice/shipment:nginx
           imagePullPolicy: Always
           ports:
           - containerPort: 50051
             name: ship-port
-
-
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "64Mi"
+              cpu: "250m"

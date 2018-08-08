@@ -40,3 +40,10 @@ spec:
           ports:
           - containerPort: 5000
             name: client-port
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "64Mi"
+              cpu: "250m"

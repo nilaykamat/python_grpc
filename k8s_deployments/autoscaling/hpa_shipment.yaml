@@ -2,7 +2,7 @@ apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
  annotations:
- name: shippment
+ name: shipment
  namespace: kube-system
 spec:
   minReplicas: 2
@@ -10,5 +10,5 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1beta2
     kind: Deployment
-    name: shippment
+    name: shipment
   targetCPUUtilizationPercentage: 50

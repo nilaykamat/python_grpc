@@ -25,9 +25,9 @@ spec:
           servicePort: 50052
       - path: /Shipment/GetShipment
         backend:
-          serviceName: shippment
+          serviceName: shipment
           servicePort: 50051
       - path: /Shipment/GetCarrierForShipment
         backend:
-          serviceName: shippment
+          serviceName: shipment
           servicePort: 50051

@@ -47,9 +47,9 @@ echo -e "${RED}Setting up carrier_service ${NC}"
 
 kubectl apply -f ../carrier_service/carrier_service.yaml
 
-echo -e "${RED}Setting up consignment-service ${NC}"
+echo -e "${RED}Setting up shipment-service ${NC}"
 
-kubectl apply -f ../shippment_service/shippment_service.yaml
+kubectl apply -f ../shipment_service/shipment_service.yaml
 
 echo -e "${RED}Setting up client-service ${NC}"
 
@@ -65,7 +65,7 @@ kubectl apply -f ../autoscaling/hpa_carrier.yaml
 
 echo -e "${RED}Setting up autoscaling for shipment-service ${NC}"
 
-kubectl apply -f ../autoscaling/hpa_shippment.yaml
+kubectl apply -f ../autoscaling/hpa_shipment.yaml
 
 sleep 5
 
