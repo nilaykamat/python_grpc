@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: fe-deployment
+  labels:
+    app: fe
+spec:
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: fe
+    spec:
+      containers:
+      - name: fe-container
+        image: gcr.io/gcptraining-17042017/python-grpc-microservice/l7grpc:v1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 443
+          protocol: TCP
+        - containerPort: 8081
+          protocol: TCP                  
+        command: ["/grpc_server"]

@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: fe-ingress
+spec:
+  tls:
+  - hosts:
+    - main.esodemoapp2.com
+    secretName: fe-secret
+  backend:
+    serviceName: fe-srv-ingress
+    servicePort: 443
