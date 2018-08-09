@@ -23,10 +23,6 @@ echo -e "${RED}Setting up ConfigMap ${NC}"
 
 kubectl apply -f config_map.yaml 
 
-#echo -e "${RED}Setting up TLS/SSL ${NC}"
-
-#kubectl apply secret tls delivery-secret --key ../certs/tls.key --cert ../certs/tls.crt --namespace=kube-system
-
 sleep 5
 
 echo -e "${RED}Setting up default backend ${NC}"
@@ -44,26 +40,6 @@ kubectl apply -f haproxy_ingress_rules_carrier.yaml
 echo -e "${RED}Setting up carrier_service ${NC}"
 
 kubectl apply -f ../carrier_service/carrier_service.yaml
-
-echo -e "${RED}Setting up consignment-service ${NC}"
-
-kubectl apply -f ../shippment_service/shippment_service.yaml
-
-echo -e "${RED}Setting up client-service ${NC}"
-
-kubectl apply -f ../client_service/client_service.yaml
-
-echo -e "${RED}Setting up autoscaling for client-service ${NC}"
-
-kubectl apply -f ../autoscaling/hpa_client.yaml
-
-echo -e "${RED}Setting up autoscaling for carrier-service ${NC}"
-
-kubectl apply -f ../autoscaling/hpa_carrier.yaml
-
-echo -e "${RED}Setting up autoscaling for shipment-service ${NC}"
-
-kubectl apply -f ../autoscaling/hpa_shippment.yaml
 
 sleep 5
 
