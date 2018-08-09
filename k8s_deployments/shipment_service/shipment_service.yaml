@@ -1,45 +1,44 @@
-## client_service.yaml
-
+## shipment_service.yaml
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: client
-  namespace: kube-system
+  name: shipment
+  namespace: istio-system
   labels:
-    app: client
+    app: shipment
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
-  - port: 5000
+  - port: 50051
     protocol: TCP
-    targetPort: 5000
+    name: grpc
+    targetPort: 50051
   selector:
-    app: client
-
+    app: shipment
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: client
-  namespace: kube-system
+  name: shipment
+  namespace: istio-system
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: client
+      app: shipment
   template:
     metadata:
       labels:
-        app: client
+        app: shipment
     spec:
         containers:
-        - name: vessel
-          image: gcr.io/gcptraining-17042017/python-grpc-microservice/client:ssl2
+        - name: shipment
+          image: gcr.io/grcp-on-gke/grpc-microservice/shippment:istio_nossl
           imagePullPolicy: Always
           ports:
-          - containerPort: 5000
-            name: client-port
+          - containerPort: 50051
+            name: ship-port
           resources:
             requests:
               memory: "64Mi"

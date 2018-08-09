@@ -38,7 +38,7 @@ spec:
         exact: /Shipment/GetCarrierForShipment
     route:
     - destination:
-        host: shippment
+        host: shipment
         port:
           number: 50051
       weight: 100
