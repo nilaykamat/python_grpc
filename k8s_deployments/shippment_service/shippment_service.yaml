@@ -39,3 +39,10 @@ spec:
           ports:
           - containerPort: 50051
             name: ship-port
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "64Mi"
+              cpu: "250m"
