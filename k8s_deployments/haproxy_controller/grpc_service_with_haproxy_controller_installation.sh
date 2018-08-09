@@ -41,13 +41,12 @@ echo -e "${RED}Setting up carrier_service ${NC}"
 
 kubectl apply -f ../carrier_service/carrier_service.yaml
 
+echo -e "${RED}Setting up autoscaling for carrier-service ${NC}"
+
+kubectl apply -f ../autoscaling/hpa_carrier.yaml
+
 sleep 5
 
 echo -e "${RED}Getting pods,svc,ing,endpoints,hpa ${NC}" 
 
 kubectl get pods,svc,ing,endpoints,hpa -o wide --all-namespaces
-
-echo -e "${RED}Get IP Address from 'kubectl get ing -o wide --all-namespaces' command and make entry in local hosts file to resolve domain name ${NC}"
-
-echo -e "${RED} Access https://delivery.gship.com/ui ${NC}"
-
