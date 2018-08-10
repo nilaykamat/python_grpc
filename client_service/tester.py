@@ -1,13 +1,12 @@
 import sys
 import shipment_cli
-# import vessel_cli
-
+import carrier_cli2
 service = sys.argv[1]
 
-for i in range(0, 100000) :
-    if service == 'consignment' :
+for i in range(0, 1000000) :
+    if service == 'shipment' :
         print shipment_cli.get_shipment(1)
+    elif service == 'carrier' :
+        print carrier_cli2.get_carrier(weight = 100)
     else :
-        print 'other'
-        shipment_cli.get_carrier(1,'sample',200)
-
+        print shipment_cli.get_carrier(1,'sample',200)
