@@ -38,7 +38,7 @@ spec:
     spec:
         containers:
         - name: shipment
-          image: gcr.io/grcp-on-gke/grpc-microservice/shipment:nginx
+          image: gcr.io/pso-suchit/grpc-microservice/shipment:nginx
           imagePullPolicy: Always
           ports:
           - containerPort: 50051

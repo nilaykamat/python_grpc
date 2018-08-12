@@ -26,13 +26,13 @@ shipments = [
     }
 ]
 
-# will retrive consignmnet from the list of consignment based on id
+# will retrive shipment from the list of shipments based on id
 def get_shipment(shipment_id):
     for shipment in shipments:
         if shipment_id == shipment['id']:
             return shipment
 
-# will call vessel service with consignment weight to retrive approprite vessel
+# will call carrier service with shipment weight to retrive approprite carrier
 def get_carrier_for_shipment(shipment):
     import grpc
 
@@ -51,7 +51,6 @@ def get_carrier_for_shipment(shipment):
 
 
     #channel = grpc.insecure_channel('localhost:50052')
-    # channel = grpc.insecure_channel('vessel:50052')
 
     # create a stub (client)
     stub = carrier_pb2_grpc.CarrierStub(channel)

@@ -10,7 +10,6 @@ import shipment
 # create a class to define the server functions, derived from
 # shipment_pb2_grpc.ShipmentServicer
 class ShipmentServicer(shipment_pb2_grpc.ShipmentServicer):
-    # service to get shipments
     
     # service to get shipments
     def GetShipment(self, request, context):

@@ -2,6 +2,8 @@
 
 ## --------------------------------------------------------------------------
 ## This script will configure Nginx Controller and deploy gRPC microservices.
+## Create a new Clutser and login into the Cluster before running this script.
+## You can use create_k8s_cluster.sh script in this repo to create a k8s cluster.
 ## --------------------------------------------------------------------------
 
 RED='\033[0;31m'
