@@ -1,3 +1,5 @@
+## This is a test script for shipment service cli.
+## --------------------------------------------
 import grpc
 from google.protobuf import json_format
 # import the generated classes
@@ -17,12 +19,11 @@ channel = grpc.secure_channel('delivery.gship.com:443', credentials)
 ###--------
 
 #channel = grpc.insecure_channel('localhost:50051')
-#channel = grpc.insecure_channel('shipment:50051')
-
 
 # create a stub (client)
 stub = shipment_pb2_grpc.ShipmentStub(channel)
-# Function to get shipment
+
+# function to get shipment
 def get_shipment(shipment_id):
     # create a valid request message
     shipment = shipment_pb2.GetShipmentRequest(shipment_id = shipment_id)
@@ -30,7 +31,8 @@ def get_shipment(shipment_id):
     response = stub.GetShipment(shipment)
     # return response in JSON format rather than object
     return json_format.MessageToJson(response)
-# function to get vessels for shipment
+
+# function to get carrier for shipment
 def get_carrier(shipment_id, shipment_name, shipment_weight):
     print "getting carrier for shipment"
     # request messgae

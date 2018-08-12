@@ -33,7 +33,7 @@ spec:
     spec:
         containers:
         - name: client
-          image: gcr.io/grcp-on-gke/grpc-microservice/client:istio_ssl
+          image: gcr.io/pso-suchit/grpc-microservice/client:istio
           imagePullPolicy: Always
           ports:
           - containerPort: 5000

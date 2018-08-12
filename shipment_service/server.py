@@ -10,7 +10,6 @@ import shipment
 # create a class to define the server functions, derived from
 # shipment_pb2_grpc.ShipmentServicer
 class ShipmentServicer(shipment_pb2_grpc.ShipmentServicer):
-    # service to get shipments
     
     # service to get shipments
     def GetShipment(self, request, context):
@@ -48,10 +47,10 @@ server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 shipment_pb2_grpc.add_ShipmentServicer_to_server(ShipmentServicer(), server)
 
 ###--------
-with open(os.path.join(os.path.split(__file__)[0], 'certs/tls.key')) as f:
-     private_key = f.read().encode()
-with open(os.path.join(os.path.split(__file__)[0], 'certs/tls.crt')) as f:
-     certificate_chain = f.read().encode()
+# with open(os.path.join(os.path.split(__file__)[0], 'tls.key')) as f:
+#     private_key = f.read().encode()
+# with open(os.path.join(os.path.split(__file__)[0], 'tls.crt')) as f:
+#     certificate_chain = f.read().encode()
 ###-------
 
 
@@ -60,7 +59,7 @@ print('Starting server. Listening on port 50051.')
 
 ###-------
 # create server credentials
-#server_creds = grpc.ssl_server_credentials(((private_key, certificate_chain,),))
+# server_creds = grpc.ssl_server_credentials(((private_key, certificate_chain,),))
 #server.add_secure_port('localhost:50051', server_creds)
 #server.add_secure_port('[::]:50051', server_creds)
 ###-------
