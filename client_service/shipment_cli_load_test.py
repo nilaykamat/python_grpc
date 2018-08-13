@@ -43,4 +43,4 @@ def get_carrier(shipment_id, shipment_name, shipment_weight):
     return json_format.MessageToJson(carrier_response)
 
 #print get_carrier(1,'sample',200)
-print get_shipment(1)
+#print get_shipment(1)
