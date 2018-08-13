@@ -21,7 +21,7 @@ carriers = [
     }
 ]
 
-# function will go through the list of vessels and will return the one with weight which can accomodate consignment
+# function will go through the list of carrier and will return the one with weight which can accomodate shipment
 def get_carrier(weight):
     for carrier in carriers:
         if weight <= carrier['max_weight']:

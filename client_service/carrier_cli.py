@@ -4,7 +4,6 @@ from carrier_protos import carrier_pb2
 from carrier_protos import carrier_pb2_grpc
 # open a gRPC channel
 #channel = grpc.insecure_channel('localhost:50052')
-#channel = grpc.insecure_channel('35.232.149.193:50052')
 
 ###--------
 
