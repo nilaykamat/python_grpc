@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: fe-container
-        image: gcr.io/gcptraining-17042017/python-grpc-microservice/l7grpc:v1
+        image: gcr.io/pso-suchit/grpc-microservice/l7grpc:glbc
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 443
