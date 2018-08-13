@@ -1,7 +1,7 @@
 #!/bin/bash 
 
 ## ----------------------------------------------------------------------------
-## This script will configure GLBC with NEG and deploy sample gRPC microservice.
+## This script will configure GLBC and deploy sample gRPC microservice.
 ## Create a new Clutser and login into the Cluster before running this script.
 ## You can use create_k8s_cluster.sh script in this repo to create a k8s cluster. 
 ## ----------------------------------------------------------------------------
@@ -32,9 +32,6 @@ kubectl apply -f fe-deployment.yaml
 
 echo -e "${RED}$Setting up grpc sample service Service Object{NC}"
 kubectl apply -f fe-srv-ingress.yaml
-
-echo -e "${RED}$Enabling NEGs for HTTP(S) Loadbalancer{NC}"
-kubectl annotate service fe-srv-ingress cloud.google.com/neg='{"ingress": true}'
 
 echo -e "${RED}$Setting up Ingress{NC}" 
 kubectl apply -f fe-ingress.yaml 
