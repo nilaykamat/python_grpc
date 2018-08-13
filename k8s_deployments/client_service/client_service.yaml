@@ -19,7 +19,7 @@ spec:
 
 ---
 apiVersion: apps/v1beta1
-kind: Deployment
+kind: Deploy
 metadata:
   name: client
   namespace: kube-system
@@ -35,7 +35,7 @@ spec:
     spec:
         containers:
         - name: client
-          image: gcr.io/grcp-on-gke/grpc-microservice/client:haproxy
+          image: gcr.io/pso-suchit/grpc-microservice/client:haproxy
           imagePullPolicy: Always
           ports:
           - containerPort: 5000
